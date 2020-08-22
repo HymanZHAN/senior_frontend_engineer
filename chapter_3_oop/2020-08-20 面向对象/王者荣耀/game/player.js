@@ -1,8 +1,7 @@
-import Yase from './heroes/Yase.js';
-
-export default class Player{
-    constructor(name){
-        this.name = name;
-        this.heroes = [new Yase()];
-    }
+export default class Player {
+  constructor(name, heroes = []) {
+    this.name = name;
+    this.heroes = heroes;
+    this.hero = null;
+  }
 }
