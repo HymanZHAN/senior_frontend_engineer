@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+// @  装饰器；需要配置webpack环境；后面会说；
+
+class Hero{
+    constructor(name){
+        this.name = name;
+    }
+    fire(){
+        console.log("释放技能");
+        // console.log("造成100点伤害");
+    }
+}
+
+// class MyHero extends Hero{
+//     constructor(name){
+//         super(name);
+//     }
+//     fire(){
+//         super.fire();
+//         console.log("造成100点伤害");
+//     }
+// }
+// // 造成伤害；
+// let yase = new MyHero("亚瑟");
+// yase.fire();
+
+// 装饰器；
+function Hurt(){
+    console.log("造成100点伤害");
+}
+
+Function.prototype.Decorator = function(fn){
+    this();
+    fn();
+}
+let yase = new Hero("亚瑟");
+// yase.fire();
+yase.fire.Decorator(Hurt);
+
+
+
+
+</script>
+</html>

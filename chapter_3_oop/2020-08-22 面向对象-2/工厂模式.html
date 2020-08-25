@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // function Factory(){
+    //     let obj = {};
+    //     // 加工原料；
+    //     obj.name = "张安";
+    //     obj.age = 20;
+    //     // 出厂；
+    //     return obj;
+    // }
+    // let myobj = Factory();
+    // console.log(myobj);
+
+    class Luban{
+        constructor(){
+            this.name = "鲁班"
+        }
+    }
+    class Yase{
+        constructor(){
+            this.name = "亚瑟";
+        }
+    }
+    class Wangzhaojun{
+        constructor(){
+            this.name = "王昭君"
+        }
+    }
+
+    function Factory(name){
+        switch(name){
+            case 'yase':
+                return new Yase();
+                break;
+            case 'luban':
+                return new Luban();
+            case 'wangZhaoJun':
+                return new Wangzhaojun();
+        }
+    }
+    let luban = Factory("luban");
+    console.log(luban);
+
+
+
+
+</script>
+</html>
