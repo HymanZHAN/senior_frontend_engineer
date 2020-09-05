@@ -4,20 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script type="text/javascript" src="./myvue2.js"></script>
+    <script type="text/javascript" src="./myvue.js"></script>
   </head>
 
   <body>
     <div id="app">
-      {{message}}
       <!-- 元素节点 -->
-      <input v-model="message" class="myc" />
+      <!-- <input v-model="message" class="myc" /> -->
       <!-- <div>
             <div>
                 {{message}}
             </div>
         </div> -->
       <!-- <div><div>{{message}}</div></div> -->
+      <div v-html="message"></div>
+      <br />
+      <div v-html="message"></div>
     </div>
   </body>
   <script>
@@ -27,15 +29,19 @@
     let vm = new Vue({
       el: "#app",
       data: {
-        message: "数据",
-        // mydata:"我的数据"
+        message: "<h1>数据</h1>",
       },
     });
-    // setTimeout(() => {
-    //     console.log("settimeout")
-    //     // 设置；
-    //     vm._data.message = "修改了";
-    //     // console.log(vm._data);
-    // }, 1000);
+    setTimeout(() => {
+      vm._data.message = `      
+      <ul>
+        <li>修改了</li>
+        <li>修改了</li>
+        <li>修改了</li>
+        <li>修改了</li>
+        <li>修改了</li>
+      </ul>
+      `;
+    }, 1000);
   </script>
 </html>
