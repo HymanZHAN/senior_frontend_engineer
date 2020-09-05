@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+<script>
+
+    function move(ele,direction, target,cb) {
+        let start = parseInt(ele.style[direction]) || 0;
+        // console.log(start) ;
+        let speed =Math.abs( target-start )/(target-start)* 5;
+        start += speed;
+        // console.log(start);
+        setTimeout(() => {
+            if(start===target){
+                // console.log("运动完成");
+                cb && cb();
+            }else{
+                ele.style[direction] = start + "px";
+                 move(ele,direction ,target,cb);
+            }
+           
+        }, 20);
+    }
+    let box = document.querySelector(".box");
+    // move(box,"left",300)
+    // move(box,"top",300)
+    // 回调处理异步； 回调地狱；
+    move(box,"left",300,function(){
+        console.log("运动完成1");
+        move(box,"top",300,function(){
+            console.log("运动完成2");
+            move(box,"left",0,function(){
+                console.log("运动完成3");
+                move(box,"top",0,function(){
+                    console.log("运动完成");
+                })
+            })
+        })
+    })
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background: red;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box"></div>
+  </body>
+  <script>
+    function move(ele, direction, target) {
+      return new Promise((resolve, reject) => {
+        function fn() {
+          let start = parseInt(ele.style[direction]) || 0;
+          let speed = (Math.abs(target - start) / (target - start)) * 5;
+          start += speed;
+          setTimeout(() => {
+            if (start === target) {
+              resolve("运动完成");
+            } else {
+              ele.style[direction] = start + "px";
+              fn();
+            }
+          }, 20);
+        }
+        fn();
+      });
+    }
+
+    async function moveBox(box) {
+      try {
+        await move(box, "left", 300);
+        console.log("1运行完成");
+
+        await move(box, "top", 300);
+        console.log("2运行完成");
+
+        await move(box, "left", 0);
+        console.log("3运行完成");
+
+        await move(box, "top", 0);
+        console.log("4运行完成");
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    let box = document.querySelector(".box");
+    moveBox(box);
+  </script>
+</html>

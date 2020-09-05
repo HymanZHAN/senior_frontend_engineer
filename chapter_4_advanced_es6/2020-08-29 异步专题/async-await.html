@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const p1 = function () {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(111);
+            }, 1000)
+        })
+    }
+    const p2 = function () {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // resolve(2222);
+                reject("err");
+            }, 2000)
+        })
+    }
+    // 链式调用；
+    // p1().then(res=>{
+    //     console.log(res);
+    //     return p2();
+    // }).then(res=>{
+    //     console.log(res);
+    // }).cath(err=>{
+    //     console.log(err);
+    // })
+    async function asyncFn() {
+        try {
+            let res1 = await p1();
+            console.log(res1);
+            let res2 = await p2();
+            console.log(res2);
+        }catch(err){
+            console.log(err);
+        }
+    }
+    asyncFn();
+    // 错误
+    //  let arr =  [function(){},function(){},function(){}];
+    // async function(){
+    //  arr.forEach( item=>{
+    //     await item();
+    //  })
+    // }
+
+    // 作业
+    // 通过async、await 改造 方块运动，达到 课上相同运动的效果
+
+
+
+    // function test(cb){
+    //     // if(cb){
+    //     // cb();
+    //     // }
+    //     cb && cb();
+       
+    // }
+    // test(function(){
+    // console.log("123")
+    // })
+
+</script>
+
+</html>

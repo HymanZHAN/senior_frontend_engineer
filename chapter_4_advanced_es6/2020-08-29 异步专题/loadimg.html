@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #mycanvas {
+            border: 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="mycanvas"></canvas>
+</body>
+<script>
+    // 加载图片  通过canvas 绘制 加载的图片；
+    function loadImg() {
+        return new Promise((resolve, reject) => {
+            let img = new Image();
+            // img.src = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598719954984&di=0834ec6ba5eb81bd63cc3af5ddcf83c8&imgtype=0&src=http%3A%2F%2Fa1.att.hudong.com%2F05%2F00%2F01300000194285122188000535877.jpg";
+            img.src = "https://timgsa.baidu.com/tim";
+            img.onload = function () {
+                //加载完成；
+                resolve(img);
+            }
+            img.onerror = function () {
+                reject("图片加载失败");
+            }
+        })
+    }
+    // 链式操作；
+    loadImg().then(res => {
+        drawImgFn(res);
+    }).catch(e=>{
+        console.log(e);
+    })
+    function drawImgFn(img) {
+        // 绘制图片
+        const cavnas = document.querySelector("#mycanvas");
+        const context = cavnas.getContext("2d");
+        context.drawImage(img, 0, 0, 100, 100);
+    }
+
+
+
+</script>
+
+</html>
