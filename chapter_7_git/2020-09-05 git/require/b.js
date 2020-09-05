@@ -1,3 +1,3 @@
 define({
-    info:"b。js"
+  info: "b.js",
 });
