@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+    body
+        h1 我是标题
+        div 我是div
+    - let str = "Hello"
+    p #{str}
+    br
+    ul
+        each user in users
+            li 姓名是：#{user.name}; 年龄是：#{user.age}
+    mixin person(name, age)
+        p Name: #{name}, Age: #{age}
+    
+    +person("张三", 25)
