@@ -1,8 +1,7 @@
-##Node.js02
-
-
+## Node.js02
 
 - 本节知识要点
+  
   - 模板引擎
   - pug模板引擎
     - 安装pug
@@ -15,6 +14,7 @@
     - nunjucks使用中的常用语法
 
 - 课堂目标
+  
   - 了解模板引擎
   - 学会pug的常用语法
   - 了解nunjucks模板引擎的常用语法
@@ -24,14 +24,14 @@
 
   模板引擎：模板引擎是web应用中动态生成html的工具，负责将数据和模板结合；常见模板引擎有：ejs、jade（现更名为pug）、Handlebars、Nunjucks、Swig等；使用模板引擎可以是项目结构更加清晰，结构更加合理，让项目维护变得更简单；
 
-##pug模板引擎使用
+## pug模板引擎使用
 
 - 安装pug
-
+  
   `npm i pug -g`
 
 - pug常用语法
-
+  
   - pug语法：通过缩进关系，代替以往html的层级包含关系，如 个简单的静态   可以表达为，注意要统一使用tab或者空格缩进，不要混用
   - 内联书写层级,a: img
   - style属性：div(style={width:”200px”,color:”red”})
@@ -46,17 +46,15 @@
   - **include** common/footer.pug 通过include引入外部文件
 
 - 练习工具 hade；
-
+  
   `npm i hade -g`
-
-
 
 ## nunjucks模板引擎在koa中的应用
 
 - 安装koa-nunjucks-2
 
 - 使用nunjucks
-
+  
   ```js
   const nunjucks = require('koa-nunjucks-2');
   app.use(nunjucks({
@@ -71,17 +69,17 @@
 - 推荐使用”.njk“后缀名
 
 - nunjucks的语法使用
-
+  
   - 变量：`{{username}}`
-
+  
   - 注释：
-
+    
     ```js
     {# Loop through all the users #}
     ```
-
+  
   - if
-
+    
     ```js
     {% if hungry %}
       I am hungry
@@ -91,9 +89,9 @@
       I am good!
     {% endif %}
     ```
-
+  
   - for
-
+    
     ```js
     <h1>Posts</h1>
     <ul>
@@ -104,17 +102,17 @@
     {% endfor %}
     </ul>
     ```
-
+  
   - 过滤器
-
+    
     ```js
     {{ foo | replace("foo", "bar") | capitalize }}
     ```
-
+  
   - 模板继承block/extends
-
+    
     - 定义父类模板
-
+      
       ```js
       <h1>我是公共模板</h1>
           <div class="leftContent">
@@ -129,9 +127,9 @@
               {% endblock %}
           </div>
       ```
-
+    
     - 继承父类模板
-
+      
       ```js
       {% extends "common.html" %}
       {% block left %}
@@ -146,62 +144,59 @@
       {% endblock %}
       ```
 
-      
-
-  - Macro（宏标签）可以定义可复用的内容，类似与编程语言中的函数
-
-    - 定义
-
-    ```js
-    {% macro pet(animalName,name="小白") %}
-        <div>
-            这里是一只{{animalName}};他的名字是{{name}}
-        </div>
-     {% endmacro %}
+- Macro（宏标签）可以定义可复用的内容，类似与编程语言中的函数
+  
+  - 定义
+  
+  ```js
+  {% macro pet(animalName,name="小白") %}
+      <div>
+          这里是一只{{animalName}};他的名字是{{name}}
+      </div>
+   {% endmacro %}
+  ```
+  
+  - 调用
     
+    ```js
+    {{pet("狗狗")}}
     ```
 
+- include/import
+  
+  - include 引入文件
+    
+    ```js
+    {% include "footer.html" %}
+    ```
+  
+  - import 导入文件
+    
+    - 定义
+    
+    ```js
+        {% macro pet(animalName) %}
+        <p>这是一只{{animalName}}</p>
+        {% endmacro %}
+        {% macro book(bookName) %}
+        <p>这是一本书，名字叫{{bookName}}</p>
+        {% endmacro %}
+    ```
+    
     - 调用
-
+      
       ```js
-      {{pet("狗狗")}}
+      {% import 'somemodule.html' as fn %}
+      {{fn.pet("狗狗")}}
+      {{fn.book("nodejs从入门到实践")}}
       ```
-
-  - include/import
-
-    - include 引入文件
-
-      ```js
-      {% include "footer.html" %}
-      ```
-
-    - import 导入文件
-
-      - 定义
-
-      ```js
-          {% macro pet(animalName) %}
-          <p>这是一只{{animalName}}</p>
-          {% endmacro %}
-          {% macro book(bookName) %}
-          <p>这是一本书，名字叫{{bookName}}</p>
-          {% endmacro %}
-      ```
-
-      - 调用
-
-        ````js
-        {% import 'somemodule.html' as fn %}
-        {{fn.pet("狗狗")}}
-        {{fn.book("nodejs从入门到实践")}}
-        ````
-
-        
 
 ### 总结
 
 - 什么是模板引擎
+
 - pug/nunjucks模板引擎
+
 - 表达式
 
 - 判断语句
@@ -211,11 +206,3 @@
 - 宏模式
 
 - 导入导出
-
-  
-
-  
-
-
-
-
