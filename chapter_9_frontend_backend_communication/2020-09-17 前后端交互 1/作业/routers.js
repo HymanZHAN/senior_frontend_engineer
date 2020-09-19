@@ -33,6 +33,11 @@ router.post("/upload", koaBody(koaBodyOptions), async (ctx, next) => {
   if (photo.type.split("/")[0] !== "image") {
     ctx.body = "Invalid file type";
     ctx.status = 400;
+    try {
+      fs.unlinkSync(photo.path);
+    } catch {
+      console.error("Cannot delete photo.");
+    }
     ctx.res.end();
   } else {
     const path = photo.path.replace("\\", "/");

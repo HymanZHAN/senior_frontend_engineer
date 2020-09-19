@@ -50,6 +50,13 @@ photoUploadField.onchange = function () {
     }, 1000);
   };
 
+  xhr.onerror = function () {
+    div1.innerHTML = "上传失败";
+    setTimeout(() => {
+      taskPanelElement.style.display = "none";
+    }, 1000);
+  };
+
   let photoForm = new FormData();
   photoForm.append("photo", photoUploadField.files[0]);
   xhr.send(photoForm);
