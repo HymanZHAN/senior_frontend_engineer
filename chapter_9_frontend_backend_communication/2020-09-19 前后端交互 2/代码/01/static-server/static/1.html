@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <button id="btn">getUsers</button>
+    <button id="getDataBtn">获取数据</button>
+
+    <script>
+
+        let btnElement = document.querySelector('#btn');
+        let getDataBtnElement = document.querySelector('#getDataBtn');
+
+        btnElement.onclick = function() {
+            let xhr = new XMLHttpRequest();
+
+            xhr.onload = function() {
+                // console.log(xhr.responseText);
+
+                if (xhr.getResponseHeader('authorization')) {
+                    let token = xhr.getResponseHeader('authorization');
+                    localStorage.setItem('token', token);
+                }
+            }
+
+            xhr.open('post', '/api/login', true);
+
+            xhr.send();
+        }
+
+        getDataBtnElement.onclick = function() {
+            let xhr = new XMLHttpRequest();
+
+            xhr.onload = function() {
+                console.log(xhr.responseText);
+            }
+
+            xhr.open('get', '/api/api', true);
+
+            xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
+            xhr.send();
+        }
+    </script>
+
+</body>
+</html>

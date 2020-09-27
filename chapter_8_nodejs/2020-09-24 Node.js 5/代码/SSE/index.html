@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>sse</h1>
+    <ul></ul>
+
+    <script>
+
+        let ulElement = document.querySelector('ul');
+        let evtSource = new EventSource('/getData');
+
+        evtSource.addEventListener('open', function() {
+            // console.log('链接成功');
+        });
+
+        evtSource.onmessage = function() {
+            console.log(123)
+        }
+
+        evtSource.addEventListener('abc', function(e) {
+            console.log('有数据', e.data, typeof e.data);
+
+            let data = JSON.parse(e.data);
+
+            ulElement.innerHTML = '';
+            data.data.forEach(d => {
+                let li = document.createElement('li');
+                li.innerHTML = d.title;
+                ulElement.appendChild(li);
+            });
+        });
+
+    </script>
+</body>
+</html>

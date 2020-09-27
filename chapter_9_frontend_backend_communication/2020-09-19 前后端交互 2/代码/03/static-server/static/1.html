@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <button id="btn">getUsers</button>
+
+    <script>
+
+        let btnElement = document.querySelector('#btn');
+
+        btnElement.onclick = function() {
+            let xhr = new XMLHttpRequest();
+
+            xhr.onload = function() {
+                console.log(xhr.responseText);
+            }
+
+            // xhr.open('get', '/getUsers', true);
+            xhr.open('get', '/api/getUsers', true);
+
+            xhr.send();
+        }
+
+    </script>
+
+</body>
+</html>
