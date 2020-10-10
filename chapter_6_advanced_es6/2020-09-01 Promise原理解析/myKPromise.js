@@ -76,7 +76,6 @@ export default class KPromise {
   }
 
   finally(cb) {
-    // console.log(this);
     console.log("finally start");
     this.fulfilledFnQueue.push(cb);
     this.rejectedFnQueue.push(cb);
