@@ -1,6 +1,25 @@
 # webpack
 
-[toc]
+- [webpack](#webpack)
+  - [1、webpack 是什么？](#1webpack-是什么)
+  - [2、安装](#2安装)
+  - [3、使用](#3使用)
+  - [4、打包模块](#4打包模块)
+    - [4-1、入口文件](#4-1入口文件)
+    - [4-2、打包命令](#4-2打包命令)
+  - [5、打包配置](#5打包配置)
+  - [6、核心配置](#6核心配置)
+    - [6-1、mode](#6-1mode)
+    - [6-2、entry](#6-2entry)
+    - [6-3、output](#6-3output)
+  - [7、深入](#7深入)
+    - [7-1、执行简要流程](#7-1执行简要流程)
+  - [8、Loaders](#8loaders)
+    - [8-1、raw-loader](#8-1raw-loader)
+    - [8-2、file-loader](#8-2file-loader)
+    - [8-3、url-loader](#8-3url-loader)
+    - [8-4、css-loader](#8-4css-loader)
+    - [8-5、style-loader](#8-5style-loader)
 
 ## 1、webpack 是什么？
 
@@ -10,8 +29,6 @@
 ![image-20191014165344746](./assets/webpack_description_2.jpg)
 
 本质上，`webpack` 是一个现代 `JavaScript` 应用程序的静态模块打包器(module bundler)。当 webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph)，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 bundle。
-
-
 
 ## 2、安装
 
@@ -26,8 +43,6 @@
 `webpack-cli` : 提供 webpack 命令、工具，类似 `create-react-app`
 
 `webpack` : webpack 代码，类似 `react`
-
-
 
 ## 3、使用
 
@@ -62,8 +77,6 @@ npx webpack
 
 > 注：npm5.2+ 增加，如果没有，可以使用 npm i -g npx 来安装
 
-
-
 ## 4、打包模块
 
 打包之前，我们需要了解一个概念，入口文件
@@ -88,8 +101,6 @@ webpack ./js/index.js
 - 内置了一个小型模块加载器(类似 `requireJS`)，实现了打包后的代码隔离与引用
 
 以上就是 webpack 最基础的使用于基本原理，当然强大的 `webpack` 远远不止这些功能。
-
-
 
 ## 5、打包配置
 
@@ -126,8 +137,6 @@ module.exports = {
 }
 ```
 
-
-
 ## 6、核心配置
 
 ### 6-1、mode
@@ -150,19 +159,16 @@ module.exports = {
 
 ```js
 module.exports = {
-  entry: './src/index.js'
-}
+  entry: "./src/index.js",
+};
 ```
 
 <!--多对一：多个入口、一个打包文件-->
 
 ```js
 module.exports = {
-  entry: [
-    './src/index1.js',
-    './src/index2.js',
-  ]
-}
+  entry: ["./src/index1.js", "./src/index2.js"],
+};
 ```
 
 <!--多对多：多个入口、多打包文件-->
@@ -170,10 +176,10 @@ module.exports = {
 ```js
 module.exports = {
   entry: {
-    'index1': "./src/index1.js",
-    'index2': "./src/index2.js"
-  }
-}
+    index1: "./src/index1.js",
+    index2: "./src/index2.js",
+  },
+};
 ```
 
 ### 6-3、output
@@ -194,14 +200,12 @@ module.exports = {
 - 可以指定一个固定的文件名称，如果是多入口多出口(`entry` 为对象)，则不能使用单文件出口，需要使用下面的方式
 - 通过 `webpack` 内置的变量占位符：`[name]`
 
-
-
 ## 7、深入
 
 在 `webpack` 中，有一个很重要的特性：模块不仅仅只是 `js` 的文件，`webpack` 可以把任意文件数据作为模块进行处理，包括：非 js 文本、css、图片等等
 
 ```javascript
-import txt from './a.txt';
+import txt from "./a.txt";
 console.log(txt);
 ```
 
@@ -213,8 +217,6 @@ console.log(txt);
 
 - `loaders`：`webpack` 中灰常核心的内容之一，前面我们说的非 js 类型的模块处理就靠它了。webpack 可以使用 loader 来预处理文件。这允许你打包除 JavaScript 之外的任何静态资源。你可以使用 Node.js 来很简单地编写自己的 loader。
 - `plugins`：`webpack` 中另外一个核心的内容，它主要是扩展 `webpack` 本身的一些功能。插件可以运行在 `webpack` 的不同阶段（钩子 / 生命周期）。
-
-
 
 ## 8、Loaders
 
@@ -259,11 +261,11 @@ module.exports = {
 <!--src/raw-loader.js-->
 
 ```javascript
-import txtData from './datas/data.txt';
-import mdData from './datas/data.md';
+import txtData from "./datas/data.txt";
+import mdData from "./datas/data.md";
 
-console.log('txtData: ', txtData);
-console.log('mdData: ', mdData);
+console.log("txtData: ", txtData);
+console.log("mdData: ", mdData);
 ```
 
 默认情况下，webpack 会报错，因为 webpack 处理不了 txt 和 md 这样的非 js 的模块，但是我们可以通过专门来处理纯文本内容(不同的 loader 有不同的作用)
@@ -325,7 +327,7 @@ rules: [
 
 ### 8-3、url-loader
 
-可以处理理 `file-loader` 所有的事情，但是遇到图片格式的模块，可以选择性的把图片转成 `base64`  格式的字符串，并打包到 `js` 中，对⼩体积的图片⽐较合适，⼤图⽚不合适。
+可以处理理 `file-loader` 所有的事情，但是遇到图片格式的模块，可以选择性的把图片转成 `base64` 格式的字符串，并打包到 `js` 中，对⼩体积的图片⽐较合适，⼤图⽚不合适。
 
 ```bash
 npm install --save-dev url-loader
