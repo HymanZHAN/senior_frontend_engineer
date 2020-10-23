@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="app">
+
+<!--        <dl>-->
+<!--            <dt>{{users[0].name}}</dt>-->
+<!--            <dd>性别：{{users[0].gender}}</dd>-->
+<!--            <dd>年龄：{{users[0].age}}</dd>-->
+<!--        </dl>-->
+
+        <kkb-user></kkb-user>
+
+<!--            <kkbUser></kkbUser>-->
+
+        <hr />
+
+<!--        <dl>-->
+<!--            <dt>{{users[1].name}}</dt>-->
+<!--            <dd>性别：{{users[1].gender}}</dd>-->
+<!--            <dd>年龄：{{users[1].age}}</dd>-->
+<!--        </dl>-->
+
+        <kkb-user></kkb-user>
+
+    </div>
+
+    <script src="./js/vue.js"></script>
+    <script>
+
+        /**
+         * 注册组件
+         *  1、全局，整个应用中都可以使用
+         *  2、局部，只能在注册的环境下使用
+         *
+         *  名称：
+         *      不要使用内置html标签做为名称
+         *      不要使用大写（后续可以忽略）
+         */
+        Vue.component('kkb-user', {
+            // 组件的配置对象，类似 new Vue 中的配置
+            template: `
+                 <dl>
+                    <dt>zMouse</dt>
+                    <dd>性别：男</dd>
+                    <dd>年龄：24</dd>
+                </dl>
+            `
+        });
+
+
+        let app = new Vue({
+            el: '#app',
+            data: {
+                users: [
+                    {
+                        id: 1,
+                        name: 'zMouse',
+                        gender: '男',
+                        age: 24
+                    },
+                    {
+                        id: 2,
+                        name: 'xiaorui',
+                        gender: '男',
+                        age: 20
+                    }
+                ]
+            },
+            components: {
+                // 在这里注册的组件只能在当前这个组件内部使用
+                // 'kkb-user': {
+                //     template: `
+                //          <dl>
+                //             <dt>zMouse</dt>
+                //             <dd>性别：男</dd>
+                //             <dd>年龄：24</dd>
+                //         </dl>
+                //     `
+                // }
+            }
+        });
+    </script>
+
+</body>
+</html>

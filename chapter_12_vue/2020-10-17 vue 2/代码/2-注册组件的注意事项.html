@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="app">
+
+        <kkb-user></kkb-user>
+
+        <hr />
+
+        <kkb-user></kkb-user>
+
+    </div>
+
+    <script src="./js/vue.js"></script>
+    <script>
+
+
+        // Vue.component('kkb-user', {
+        //     // 每一个组件的 template 有且仅有一个根节点
+        //     template: `
+        //          <div></div>
+        //          <dl>
+        //             <dt>zMouse</dt>
+        //             <dd>性别：男</dd>
+        //             <dd>年龄：24</dd>
+        //         </dl>
+        //     `
+        // });
+
+        let UserComponent = Vue.component('kkb-user', {
+            data() {
+                return {
+                    id: 1,
+                    name: 'zMouse',
+                    gender: '男',
+                    age: 24
+                };
+            },
+            template: `
+                 <dl>
+                    <dt>{{name}}</dt>
+                    <dd>性别：男</dd>
+                    <dd>年龄：24</dd>
+                </dl>
+            `
+        });
+
+        // UserComponent 还不是一个组件对象，而是一个 组件 类
+        // 在模板中我们使用了 <kkb-user> 被 Vue 进行解析的时候，会对应在实例化这个类
+        // <kkb-user> => new UserComponent();
+        // console.dir(UserComponent);
+
+        function VueComponent(options) {
+            // return new Vue(options)
+            return function KkbVue() {
+                return {
+                    data: options.data()
+                }
+            };
+        }
+
+
+
+        let UserComponent1 = VueComponent({
+            data() {
+                return {
+                    a: 1
+                }
+            }
+        });
+
+        let u1 = new UserComponent1();
+        let u2 = new UserComponent1();
+
+
+
+        u1.data.a = 100;
+
+        console.log(u1, u2);
+
+        let app = new Vue({
+            el: '#app',
+            data: {
+                users: [
+                    {
+                        id: 1,
+                        name: 'zMouse',
+                        gender: '男',
+                        age: 24
+                    },
+                    {
+                        id: 2,
+                        name: 'xiaorui',
+                        gender: '男',
+                        age: 20
+                    }
+                ]
+            },
+            components: {
+                // 在这里注册的组件只能在当前这个组件内部使用
+                // 'kkb-user': {
+                //     template: `
+                //          <dl>
+                //             <dt>zMouse</dt>
+                //             <dd>性别：男</dd>
+                //             <dd>年龄：24</dd>
+                //         </dl>
+                //     `
+                // }
+            }
+        });
+
+        console.dir(app);
+
+
+        // function fn() {
+        //     // 函数内部变量 => 组件的 data 选项
+        //     let a = 1;
+        // }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="./js/vue.js"></script>
+    <script>
+      // 暗号：潘森吃素
+      Vue.component("photo-item", {
+        props: {
+          photoSrc: {
+            required: true,
+            type: String,
+          },
+          photoName: {
+            type: String,
+            default: "",
+          },
+        },
+        template: `
+      <div class="photo">
+          <img :src="photoSrc" :alt="photoName">
+      </div>
+              `,
+      });
+
+      let app = new Vue({
+        el: "#app",
+        data: {
+          photos: [
+            {
+              src: "./img/angular.png",
+              name: "angular logo",
+            },
+            {
+              src: "./img/vue.png",
+              name: "vue logo",
+            },
+            {
+              src: "./img/react.png",
+              name: "react logo",
+            },
+          ],
+        },
+        template: `
+                <div id="app">
+                    <photo-item :photoSrc="photos[0].src" :photoName="photos[0].name"></photo-item>
+                    <photo-item :photoSrc="photos[1].src" :photoName="photos[1].name"></photo-item>
+                    <photo-item :photoSrc="photos[2].src" :photoName="photos[2].name"></photo-item>
+                </div>
+              `,
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="app">
+
+    </div>
+
+    <script src="./js/vue.js"></script>
+    <script>
+
+
+
+        let UserComponent = Vue.component('kkb-user', {
+            // props 用来定义该组件可以接受外部传入的属性（参数）
+            props: ['data'],
+            template: `
+                 <dl>
+                    <dt>{{data.name}}</dt>
+                    <dd>性别：{{data.gender}}</dd>
+                    <dd>年龄：{{data.age}}</dd>
+                </dl>
+            `
+        });
+
+        let app = new Vue({
+            el: '#app',
+            data: {
+                users: [
+                    {
+                        id: 1,
+                        name: 'zMouse',
+                        gender: '男',
+                        age: 24
+                    },
+                    {
+                        id: 2,
+                        name: 'xiaorui',
+                        gender: '男',
+                        age: 20
+                    }
+                ]
+            },
+            // 如果没有template，那么当前组件 el 对应的元素的 outerHTML 就是 template
+            // template: document.querySelector('#app').outerHTML,
+
+            // 通过 属性（attribute）来把数据传入给子组件
+            // 非指令的 attribute 是 html 属性，其值不会做任何特殊处理
+            // v-bind 指令的值 会首先被 Vue 进行解析
+            template: `
+              <div id="app">
+                  <kkb-user v-bind:data="users[0]"></kkb-user>
+                  <hr />
+                  <kkb-user :data="users[1]"></kkb-user>
+              </div>
+            `
+        });
+
+
+        // function fn1() {
+        //     // 函数内部变量 => 组件的 data 选项
+        //     let a = 1;
+        //
+        //     fn2(a);
+        // }
+        //
+        // function fn2(data) {
+        //     let b = 2;
+        //     console.log(b + data);
+        // }
+    </script>
+
+</body>
+</html>

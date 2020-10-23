@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="app">
+
+    </div>
+
+    <script src="./js/vue.js"></script>
+    <script>
+
+        Vue.component('kkb-user', {
+            props: ['data'],
+            template: `
+                 <dl>
+                    <dt>{{data.name}}</dt>
+                    <dd>性别：{{data.gender}}</dd>
+                    <dd>年龄：{{data.age}} <button @click="inc">+</button></dd>
+                </dl>
+            `,
+            methods: {
+                inc() {
+                    // update固定写法，data是要同步的prop的名称
+                    // 同时 sync 的方式支持多个 prop 的同步，但是 v-model 只能同时支持一个
+                    this.$emit('update:data', {
+                        ...this.data,
+                        age: this.data.age + 1
+                    });
+                }
+            }
+        });
+
+        let app = new Vue({
+            el: '#app',
+            data: {
+                users: [
+                    {
+                        id: 1,
+                        name: 'zMouse',
+                        gender: '男',
+                        age: 24
+                    },
+                    {
+                        id: 2,
+                        name: 'xiaorui',
+                        gender: '男',
+                        age: 20
+                    }
+                ]
+            },
+            template: `
+              <div id="app">
+                  <h2>统计：</h2>
+                  <p> {{users[0].age + users[1].age}} </p>
+                  <hr />
+                  <kkb-user :data.sync="users[0]"></kkb-user>
+                  <hr />
+                  <kkb-user :data.sync="users[1]"></kkb-user>
+              </div>
+            `
+        });
+
+
+        // function fn1() {
+        //     // 函数内部变量 => 组件的 data 选项
+        //     let a = 1;
+        //
+        //     fn2(a);
+        // }
+        //
+        // function fn2(data) {
+        //     let b = 2;
+        //     console.log(b + data);
+        // }
+    </script>
+
+</body>
+</html>

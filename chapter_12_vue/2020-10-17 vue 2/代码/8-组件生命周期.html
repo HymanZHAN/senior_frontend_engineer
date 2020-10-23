@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="app">
+
+    </div>
+
+    <script src="./js/vue.js"></script>
+    <script>
+
+
+
+        Vue.component('kkb-user', {
+            data() {
+                return {
+                    age: 1,
+                    timer: 0
+                }
+            },
+            template: `
+                <div>
+                  {{age}}
+                </div>
+            `,
+            created() {
+                this.timer = setInterval(() => {
+                    this.age++;
+                    console.log(this.age);
+                }, 1000);
+            },
+            beforeDestroy() {
+                console.log('beforeDestroy')
+                clearInterval(this.timer);
+            }
+        });
+
+        let app = new Vue({
+            el: '#app',
+            data: {
+                isShow: true
+            },
+            template: `
+              <div id="app">
+                <button @click="isShow = false">销毁user组件</button>
+                <kkb-user v-if="isShow"></kkb-user>
+              </div>
+            `
+        });
+
+
+    </script>
+
+</body>
+</html>

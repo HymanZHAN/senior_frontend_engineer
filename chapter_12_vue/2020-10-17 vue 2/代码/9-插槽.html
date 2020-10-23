@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="app">
+        <kkb-user :data="1">
+            <div>开课吧</div>
+            <!--template 也是一个内置的组件-->
+            <template #content="data" >
+                <p>{{data.a}}岁的{{data.n}}, 欢迎来到开课吧！</p>
+            </template>
+        </kkb-user>
+    </div>
+
+    <script src="./js/vue.js"></script>
+    <script>
+
+        Vue.component('kkb-user', {
+            // slot vue内置的一个组件，用来获取组件外部子节点内容
+            props: ['data'],
+            data() {
+                return {
+                    name: 'zMouse',
+                    age: 24
+                }
+            },
+            template: `
+                <div>
+                  <slot></slot>
+                  kkb-user-{{data}}
+                  <slot name="content" :n="name" :a="age"></slot>
+                </div>
+            `
+        });
+
+        let app = new Vue({
+            el: '#app'
+        });
+
+
+    </script>
+
+</body>
+</html>
