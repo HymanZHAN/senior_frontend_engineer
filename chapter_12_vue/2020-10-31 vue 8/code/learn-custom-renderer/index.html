@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="index.js" type="module"></script>
+
+    <script>
+      // 写原生的 dom
+      const vdom = {
+        tag: "div",
+        children: "x -- y",
+        parent: "#app",
+      };
+      // dom api
+      // 渲染平台提供的 api
+      // 浏览器里面的 dom
+      const div = document.createElement(vdom.tag);
+      div.innerText = vdom.children;
+      document.querySelector(vdom.parent).append(div);
+
+      // 写自定义渲染器 -》 canvas
+
+      // canvas api ——》 李伟
+      // 基于 canvas 的库 pixi
+
+      // dom api
+      // canvas
+    </script>
+  </body>
+</html>
