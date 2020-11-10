@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/react.js"></script>
+  <!-- React 核心库：虚拟DOM 、 组件 -->
+  <script src="js/react-dom.js"></script>
+  <!-- 提供将 React 构建好的视图渲染成真实的DOM -->
+</head>
+<body>
+  <div id="root"></div>
+<script>
+/*
+  构建视图：
+      元素、组件 -- ReactNodes (虚拟DOM，以对象的形式模拟DOM树)
+      ReactNode createElement(type,props,children1,children2……childrenN)
+      参数：
+        type 类型
+        props 属性 {}
+        children 内容或子元素 string|ReactNode
+      返回值：
+        ReactNode (react 构建好的虚拟DOM)
+
+*/  
+let span = React.createElement("span",null,"span1");
+let span2 = React.createElement("span",null,"span2");
+let div = React.createElement("div",{className:"box",id:"box"},span,span2);
+console.log(div);
+// let div2 = document.createElement("div");
+// let attrs = "";
+// for(let s in div2){
+//   attrs += s + "|";
+// }
+//console.dir(attrs);
+/*
+  ReactDOM.render(inner,container[,callBack]) 将React构建好的视图渲染到真实DOM中
+  参数：
+      inner React 构建好的视图（虚拟DOM）
+      container 容器，将 React 构建好的视图（挂载）渲染到那个元素中, DOM Element
+      callBack 真实DOM渲染完的回调
+*/
+ReactDOM.render(
+  div,
+  document.querySelector("#root"),
+  ()=>{
+    console.log("渲染完成");
+  }
+);
+
+</script>  
+</body>
+</html>

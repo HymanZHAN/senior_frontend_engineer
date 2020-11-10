@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/react.js"></script>
+  <!-- React 核心库：虚拟DOM 、 组件 -->
+  <script src="js/react-dom.js"></script>
+  <!-- 提供将 React 构建好的视图渲染成真实的DOM -->
+  <script src="js/babel.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+<script type="text/babel">
+/*
+  JSX: javaScript + XML, 是 JS 的一个糖衣语法
+  给javaScript添加XML的语法扩展
+*/  
+let div = <div className="box" id="box">
+      <span>span1</span>
+      <span>span2</span>
+  </div>;
+ReactDOM.render(
+  div,
+  document.querySelector("#root"),
+  ()=>{
+    console.log("渲染完成");
+  }
+);
+
+/*
+  开发环境
+  生产环境
+*/
+
+</script>  
+</body>
+</html>

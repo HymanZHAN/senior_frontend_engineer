@@ -50,6 +50,7 @@ const renderer = createRenderer({
         el.on("pointertap", nextValue);
         break;
       default:
+        console.log(typeof el);
         el[key] = nextValue;
         break;
     }
