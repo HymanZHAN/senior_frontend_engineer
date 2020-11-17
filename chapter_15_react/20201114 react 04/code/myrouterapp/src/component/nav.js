@@ -14,7 +14,8 @@ import { Link } from "react-router-dom";
   Link 组件 用于项目内视图的跳转
 */
 function Nav() {
-  return <nav>
+  return (
+    <nav>
       <Link to="/">首页</Link>
       <span> | </span>
       <Link to="/join">加入我们</Link>
@@ -24,8 +25,11 @@ function Nav() {
       <Link to="/about/details">加入我们详情</Link>
       <span> | </span>
       {/* <Link to="https://www.baidu.com">百度</Link> */}
-      <a href="https://www.baidu.com" target="_blank">百度</a>
-  </nav>
+      <a href="https://www.baidu.com" target="_blank">
+        百度
+      </a>
+    </nav>
+  );
 }
 
 export default Nav;
