@@ -1,0 +1,49 @@
+body,
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
+  margin: 0;
+}
+.wrap {
+  margin: 0 auto;
+  width: 1200px;
+}
+.logo {
+  text-align: center;
+}
+.page {
+  opacity: 0;
+  transition: 1s opacity;
+  display: flex;
+  min-height: 100vh;
+}
+.page-content {
+  flex: 1;
+  position: relative;
+}
+.view {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.view>.wrap {
+  margin-top: 10px;
+}
+.index-list {
+  background: #fff;
+  padding: 5px 20px;
+}
+.index-list .ant-list-item {
+  padding: 10px 10px;
+}
+.appear {
+  opacity: 1;
+}
+.appear-done {
+  opacity: 1;
+  transition: none;
+}
